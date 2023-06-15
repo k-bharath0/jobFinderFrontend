@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { Component } from 'react'
+import {BrowserRouter, Routes,Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+import UserP from './jobPoster/UserP'
+import UserS from './jobSeeker/UserS'
+import Login from './pages/Login'
+import Register from './pages/Register'
+export default class App extends Component {
+   renderList=()=>{
+    if(localStorage.getItem('token') && localStorage.getItem('user')){
+ 
+      return[
+        
+        <Route path='/jp' element={<UserP/>}/>,
+        <Route path='*' element={<UserP/>}/>
+        
+      ]
+    }
+    else if(localStorage.getItem('token')){
+      return[
+        
+        <Route path='/js' element={<UserS/>}/>,
+        <Route path='*' element={<UserS/>}/>
+        
+      ]
+    }
+    else{return[
+      <Route path='/' element={<Login/>}/>,
+        <Route path='/Signup' element={<Register/>}/>,
+        <Route path='*' element={<Login/>}/>
+      ]
+    }
+   }
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Routes>        
+              {this.renderList()}
+         </Routes>
+           </BrowserRouter>
     </div>
-  );
+  )
 }
-
-export default App;
+}

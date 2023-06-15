@@ -11,11 +11,11 @@ export default function Login(props) {
     const submitHandler = (e) => {
         e.preventDefault();
         if(login.user==='JobS'){
-        axios.post('http://localhost:4000/api/auth/loginS', login).then(res => { localStorage.setItem('token', res.data.token);
+        axios.post('https://jobfinderbackend-ulrg.onrender.com/api/auth/loginS', login).then(res => { localStorage.setItem('token', res.data.token);
         window.location.href='/js' }).catch(err => alert(err.response.data));
         }
         if(login.user==='JobP'){
-         axios.post('http://localhost:4000/api/auth/loginP', login).then(res => { localStorage.setItem('token', res.data.token);
+         axios.post('https://jobfinderbackend-ulrg.onrender.com/api/auth/loginP', login).then(res => { localStorage.setItem('token', res.data.token);
          localStorage.setItem('user',res.data.name);
          window.location.href='/jp' }).catch(err => alert(err.response.data));   
       }

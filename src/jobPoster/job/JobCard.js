@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as ReactBootstrap from "react-bootstrap";
 export default class JobCard extends Component {
     deleteHandler = (id) => {
-        axios.delete(`http://localhost:4000/${id}`).then(res => window.location.reload(false));
+        axios.delete(`https://jobfinderbackend-ulrg.onrender.com/${id}`).then(res => window.location.reload(false));
     } 
   render() {
     const date = this.props.job.createdAt.substring(0, 10);

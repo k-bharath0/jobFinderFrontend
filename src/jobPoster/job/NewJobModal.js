@@ -5,7 +5,7 @@ export default class NewJobModal extends Component {
     state={
         skills2: ["Javascript","React","Node","MongoDB","Express","SQL"],
         title:'',
-        work:'Full time',
+        work:'Full-time',
         name:'',
         url:'',
         location:'Remote',
@@ -25,8 +25,9 @@ export default class NewJobModal extends Component {
       this.state.skills.includes(skill) ? this.setState({skills:this.state.skills.filter((s)=>s !== skill)}) :
       this.setState({skills:this.state.skills.concat(skill)})
     }
-    send=()=>{
-     axios.post("http://localhost:4000/store",
+    send=(e)=>{
+      e.preventDefault();
+     axios.post(`https://jobfinderbackend-ulrg.onrender.com/store`,
     { 
       title: this.state.title,
       work: this.state.work,
@@ -40,6 +41,21 @@ export default class NewJobModal extends Component {
      }).then(() => {
       this.setState({ postMessage: 'Job posted successfully!' });
       console.log('Job posted successfully!')
+      this.props.fetch()
+      this.setState({
+        title:'',
+        work:'Full-time',
+        name:'',
+        url:'',
+        location:'Remote',
+        link:'',
+        des:'',
+        skills:[],
+      })
+      const interval = setInterval(() => {
+        this.setState({postMessage:''})
+      }, 1500);
+      return () => clearInterval(interval);
     })
     .catch(err => {
       this.setState({ postMessage: 'Failed to post the job.' });
@@ -51,19 +67,19 @@ export default class NewJobModal extends Component {
         
         <div className="App p-4">
             <ReactBootstrap.Modal centered backdrop="static" show={this.props.show} onHide={this.props.closeJobModal}>
-             <form onSubmit={this.send}>
+             <form method="POST" onSubmit={this.send}>
                 <ReactBootstrap.Modal.Header closeButton style={{border:"none"}}>
                     <ReactBootstrap.Modal.Title>Post Job</ReactBootstrap.Modal.Title>
                 </ReactBootstrap.Modal.Header>
 
-                <ReactBootstrap.Modal.Body>
+                <ReactBootstrap.Modal.Body> 
                     <ReactBootstrap.Container>
                       <ReactBootstrap.Row className='mb-2'>
                         <ReactBootstrap.Col>
-                        <ReactBootstrap.Form.Control required name="title" onChange={this.handleChange} type="text" placeholder="Job tittle *" />
+                        <ReactBootstrap.Form.Control value={this.state.title} required name="title" onChange={this.handleChange} type="text" placeholder="Job tittle *" />
                         </ReactBootstrap.Col>
                         <ReactBootstrap.Col>
-                        <select name="work" className='w-100 p-2' onChange={this.handleChange} >
+                        <select name="work" value={this.state.work} className='w-100 p-2' onChange={this.handleChange} >
                             <option value="Full-Time">Full-Time</option>
                             <option value="Part-Time">Part-Time</option>
                             <option value="Contract">Contract</option>
@@ -72,26 +88,26 @@ export default class NewJobModal extends Component {
                       </ReactBootstrap.Row >
                       <ReactBootstrap.Row className='mb-2'>
                         <ReactBootstrap.Col>
-                        <ReactBootstrap.Form.Control required name='name' onChange={this.handleChange} type="text" placeholder="Company name *" />
+                        <ReactBootstrap.Form.Control required value={this.state.name} name='name' onChange={this.handleChange} type="text" placeholder="Company name *" />
                         </ReactBootstrap.Col>
                         <ReactBootstrap.Col>
-                        <ReactBootstrap.Form.Control required name='url' onChange={this.handleChange} type="text" placeholder="Company URL *" />
+                        <ReactBootstrap.Form.Control required value={this.state.url} name='url' onChange={this.handleChange} type="text" placeholder="Company URL *" />
                          </ReactBootstrap.Col>
                       </ReactBootstrap.Row>
                       <ReactBootstrap.Row className='mb-2'>
                         <ReactBootstrap.Col>
-                        <select name="location" onChange={this.handleChange} className='w-100  p-2' >
+                        <select name="location" value={this.state.location} onChange={this.handleChange} className='w-100  p-2' >
                             <option value="Remote">Remote</option>
                             <option value="In-Office">In-Office</option>
                         </select>
                         </ReactBootstrap.Col>
                         <ReactBootstrap.Col>
-                        <ReactBootstrap.Form.Control required name='link' onChange={this.handleChange} type="text" placeholder="Job link *" />
+                        <ReactBootstrap.Form.Control required value={this.state.link} name='link' onChange={this.handleChange} type="text" placeholder="Job link *" />
                        </ReactBootstrap.Col>
                       </ReactBootstrap.Row>
                       <ReactBootstrap.Row className='mb-2'>
                         <ReactBootstrap.Col>
-                        <ReactBootstrap.Form.Control required name='des' onChange={this.handleChange} as="textarea" rows={3} placeholder="Job description *"/>
+                        <ReactBootstrap.Form.Control required value={this.state.des} name='des' onChange={this.handleChange} as="textarea" rows={3} placeholder="Job description *"/>
                         </ReactBootstrap.Col>
                       </ReactBootstrap.Row>
                       <ReactBootstrap.Row className='mt-2'>

@@ -15,9 +15,9 @@ export default class Header extends Component {
                 <h1 style={{color:"white"}} className='ms-5'>Job Finder</h1>
                 </ReactBootstrap.Col>
                 <ReactBootstrap.Col className='text-end'>
-                <ReactBootstrap.Button onClick={this.endSession} variant="outline-info" className='ms-5'>Log Out</ReactBootstrap.Button>
+                <ReactBootstrap.Button onClick={this.endSession} variant="outline-info" className='me-2 mb text-nowrap'>Log Out</ReactBootstrap.Button>
              
-                <ReactBootstrap.Button onClick={this.props.openJobModal} variant="info" className='ms-5'>Post a Job</ReactBootstrap.Button>
+                <ReactBootstrap.Button onClick={this.props.openJobModal} variant="info" className=' text-nowrap'>Post a Job</ReactBootstrap.Button>
                 </ReactBootstrap.Col>
               </ReactBootstrap.Row>
             </ReactBootstrap.Container>

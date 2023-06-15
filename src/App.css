@@ -1,3 +1,14 @@
+@media (max-width: 380px) {
+  .mb{
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 324px), (max-width: 545px) {
+  .mb{
+    margin-bottom: 4px;
+  }
+}
+
 .btn{
   font-weight: bold;
 }

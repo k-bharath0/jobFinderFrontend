@@ -13,10 +13,10 @@ export default function Register() {
    const submitHandler = (e) => {
        e.preventDefault();
        if(register.user==='JobS'){
-       axios.post(`http://localhost:4000/api/auth/registerS`, register).then(res => { alert(res.data); navigate('/') }).catch(err => alert(err.response.data));
+       axios.post(`https://jobfinderbackend-ulrg.onrender.com/api/auth/registerS`, register).then(res => { alert(res.data); navigate('/') }).catch(err => alert(err.response.data));
        }
        if(register.user==='JobP'){
-         axios.post(`http://localhost:4000/api/auth/registerP`, register).then(res => { alert(res.data); navigate('/') }).catch(err => alert(err.response.data));
+         axios.post(`https://jobfinderbackend-ulrg.onrender.com/api/auth/registerP`, register).then(res => { alert(res.data); navigate('/') }).catch(err => alert(err.response.data));
          }
       }
     return (

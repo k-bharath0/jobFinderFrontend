@@ -16,7 +16,7 @@ export default class UserS extends Component {
   componentDidMount=()=>this.fetch()
   fetch=()=>{
     this.setState({search:false})
-    axios.get("http://localhost:4000/jobs",{
+    axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs",{
       params: {
         sortBy: "timestamp",
         sortOrder: "desc"
@@ -30,7 +30,7 @@ export default class UserS extends Component {
 }
   jobSearch=(search)=>{
     this.setState({search:true})
-    axios.get("http://localhost:4000/jobs", {
+    axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs", {
       params: {
         work: search.work,
         location: search.location,

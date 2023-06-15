@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as ReactBootstrap from "react-bootstrap";
 export default class Search extends Component {
     state={
-        work:'Full time',
+        work:'Full-time',
         location:'Remote'
     }
     handleChange=(e)=>{
@@ -24,15 +24,15 @@ export default class Search extends Component {
                 <ReactBootstrap.Row>
                     <ReactBootstrap.Col className='p-2'>
                         <select name="work" value={this.state.work} className='w-100 h-100 p-2'onChange={this.handleChange} >
-                            <option value="Full time">Full Time</option>
-                            <option value="Part Time">Part Time</option>
+                            <option value="Full-time">Full-Time</option>
+                            <option value="Part-Time">Part-Time</option>
                             <option value="Contract">Contract</option>
                         </select>
                     </ReactBootstrap.Col>
                     <ReactBootstrap.Col className='p-2'>
                         <select name="location" value={this.state.location} className='w-100 h-100 p-2' onChange={this.handleChange} >
                             <option value="Remote">Remote</option>
-                            <option value="In Office">In-Office</option>
+                            <option value="In-Office">In-Office</option>
                         </select>
                     </ReactBootstrap.Col>
                     <ReactBootstrap.Col className='p-2'>

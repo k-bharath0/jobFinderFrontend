@@ -11,7 +11,7 @@ export default class UserP extends Component {
       
     componentDidMount=()=>{this.fetch()}
     fetch=()=>{
-          axios.get("http://localhost:4000/jobs", {
+          axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs", {
            params: {
              userId:'' 
            }
@@ -32,7 +32,7 @@ export default class UserP extends Component {
      return (
       <div>
         <Header openJobModal={()=> this.setState({show:true})}/>
-        <NewJobModal  closeJobModal={()=> this.setState({show:false})} show={this.state.show}/>
+        <NewJobModal fetch={this.fetch}  closeJobModal={()=> this.setState({show:false})} show={this.state.show}/>
         
         {
             this.state.jobs.map((job)=>(

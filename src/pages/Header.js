@@ -4,6 +4,7 @@ export default class Header extends Component {
   render() {
     return (
         <div>
+          
              <ReactBootstrap.Container fluid style={{backgroundColor:"black"}} className='p-5'>
               <ReactBootstrap.Row className='p-3'>
                 <ReactBootstrap.Col className='d-flex flex-wrap justify-content-between'>
@@ -11,6 +12,7 @@ export default class Header extends Component {
                  </ReactBootstrap.Col>
               </ReactBootstrap.Row>
             </ReactBootstrap.Container>
+            
         </div>
     )
   }

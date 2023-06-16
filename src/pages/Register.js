@@ -63,7 +63,7 @@ export default function Register() {
          </ReactBootstrap.Row>
          <ReactBootstrap.Row>
          <ReactBootstrap.Col>
-            <p>don't have an account ? <ReactBootstrap.Button size="sm" variant="outline-dark"><Link style={{textDecoration:"none"}} to='/'>Sign-In</Link></ReactBootstrap.Button></p>
+            <p>already have an account ? <ReactBootstrap.Button size="sm" variant="outline-dark"><Link style={{textDecoration:"none"}} to='/'>Sign-In</Link></ReactBootstrap.Button></p>
          </ReactBootstrap.Col>
          </ReactBootstrap.Row>
          </form>

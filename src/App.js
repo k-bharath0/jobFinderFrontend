@@ -12,7 +12,7 @@ export default class App extends Component {
  
       return[
         
-        <Route path='/jp' element={<UserP/>}/>,
+        <Route path='/' element={<UserP/>}/>,
         <Route path='*' element={<UserP/>}/>
         
       ]
@@ -20,7 +20,7 @@ export default class App extends Component {
     else if(localStorage.getItem('token')){
       return[
         
-        <Route path='/js' element={<UserS/>}/>,
+        <Route path='/' element={<UserS/>}/>,
         <Route path='*' element={<UserS/>}/>
         
       ]

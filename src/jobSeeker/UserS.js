@@ -16,30 +16,20 @@ export default class UserS extends Component {
   componentDidMount=()=>this.fetch()
   fetch=()=>{
     this.setState({search:false})
-    axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs",{
-      params: {
-        sortBy: "timestamp",
-        sortOrder: "desc"
-    }
-    })
+    axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs")
     .then((res)=>{
+      const SortOrder = res.data.sort((a, b) =>     a.createdAt > b.createdAt ? -1 : 1,);
         this.setState({
-            jobs:res.data
+            jobs:SortOrder
         })
-    })
+    }) 
 }
   jobSearch=(search)=>{
     this.setState({search:true})
-    axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs", {
-      params: {
-        work: search.work,
-        location: search.location,
-        sortBy: "timestamp",
-        sortOrder: "desc",
-      }
-    })
+    axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs")
     .then((res) => {
-      const filteredData = res.data.filter(job => {
+      const SortOrder = res.data.sort((a, b) =>     a.createdAt > b.createdAt ? -1 : 1,);
+      const filteredData = SortOrder.filter(job => {
         return job.work === search.work && job.location === search.location;
       });
       this.setState({

@@ -11,13 +11,10 @@ export default class UserP extends Component {
       
     componentDidMount=()=>{this.fetch()}
     fetch=()=>{
-          axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs", {
-           params: {
-             userId:'' 
-           }
-         })
+          axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs")
          .then((res) => {
-           const filteredData = res.data.filter(job => {
+          const SortOrder = res.data.sort((a, b) =>     a.createdAt > b.createdAt ? -1 : 1,);
+           const filteredData = SortOrder.filter(job => {
              return job.userId === localStorage.getItem('user');
            });
            this.setState({

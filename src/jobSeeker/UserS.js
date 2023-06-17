@@ -10,35 +10,36 @@ export default class UserS extends Component {
     show:false,
     show2:false,
     jobs:[],
+    jobs2:[],
     viewJob:{skills:[]},
     search:false
   }
   componentDidMount=()=>this.fetch()
   fetch=()=>{
-    this.setState({search:false})
+    
     axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs")
     .then((res)=>{
       const SortOrder = res.data.sort((a, b) =>     a.createdAt > b.createdAt ? -1 : 1,);
         this.setState({
-            jobs:SortOrder
+            jobs:SortOrder,
+            jobs2:SortOrder
+          
         })
     }) 
 }
   jobSearch=(search)=>{
     this.setState({search:true})
-    axios.get("https://jobfinderbackend-ulrg.onrender.com/jobs")
-    .then((res) => {
-      const SortOrder = res.data.sort((a, b) =>     a.createdAt > b.createdAt ? -1 : 1,);
-      const filteredData = SortOrder.filter(job => {
+      const filteredData = jobs.filter(job => {
         return job.work === search.work && job.location === search.location;
       });
       this.setState({
         jobs: filteredData
       });
-    })
-    .catch((error) => {
-      return(error)
-    });
+    
+  }
+  fetch2=()=>{
+    
+    this.setState({search:false,jobs:jobs2})
   }
   render() {
     return (
@@ -48,7 +49,7 @@ export default class UserS extends Component {
        {this.state.search && <ReactBootstrap.Container className='mb-3 text-end'>
           <ReactBootstrap.Row>
             <ReactBootstrap.Col>
-            <ReactBootstrap.Button onClick={this.fetch} variant='outline-dark'> X Close Search</ReactBootstrap.Button>
+            <ReactBootstrap.Button onClick={this.fetch2} variant='outline-dark'> X Close Search</ReactBootstrap.Button>
             </ReactBootstrap.Col>
           </ReactBootstrap.Row>
         </ReactBootstrap.Container>}

@@ -28,7 +28,7 @@ export default class UserS extends Component {
     }) 
 }
   jobSearch=(search)=>{
-    this.setState({search:true})
+    this.setState({search:true,jobs:this.state.jobs2})
       const filteredData = this.state.jobs.filter(job => {
         return job.work === search.work && job.location === search.location;
       });

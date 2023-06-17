@@ -39,7 +39,7 @@ export default class UserS extends Component {
   }
   fetch2=()=>{
     
-    this.setState({search:false,jobs:jobs2})
+    this.setState({search:false,jobs:this.state.jobs2})
   }
   render() {
     return (
